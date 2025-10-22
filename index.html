@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV. Aulia Kharisma | Kontraktor Konstruksi Bangunan, Jalan, & Sipil Profesional</title>
+    <meta name="description" content="CV. Aulia Kharisma adalah kontraktor konstruksi terpercaya yang berspesialisasi dalam pembangunan gedung, jalan, jembatan, dan infrastruktur sipil. Kredibel, profesional, dan berorientasi B2B." />
+    
+    <!-- Tailwind CSS via CDN -->
+    <!-- NOTE UNTUK DEPLOYMENT VITE/VERCEL: -->
+    <!-- Untuk produksi, disarankan untuk menginstal Tailwind CSS via NPM/Yarn. -->
+    <!-- Hapus script di bawah ini dan ikuti panduan instalasi resmi Tailwind CSS -->
+    <!-- untuk Vite (https://tailwindcss.com/docs/guides/vite). Ini akan memungkinkan -->
+    <!-- proses 'build' yang lebih optimal dan kustomisasi penuh via tailwind.config.js. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto+Slab:wght@700;800&display=swap" rel="stylesheet">
+    
+    <script>
+      // Konfigurasi ini hanya untuk setup via CDN.
+      // Di build produksi, konfigurasi ini akan berada di file `tailwind.config.js`.
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'deep-blue': '#1A237E',
+              'charcoal': '#424242',
+              'safety-orange': '#FF6D00',
+              'vibrant-teal': '#00BFA5',
+            },
+            fontFamily: {
+              'sans': ['Open Sans', 'sans-serif'],
+              'slab': ['Roboto Slab', 'serif'],
+            },
+            keyframes: {
+              fadeInDown: {
+                '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+            },
+            animation: {
+              'fade-in-down': 'fadeInDown 0.8s ease-out forwards',
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+        /* Global Styles & Utilities */
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-title {
+            @apply text-3xl md:text-4xl font-slab font-bold text-charcoal text-center mb-4;
+        }
+        .section-subtitle {
+            @apply text-center text-lg text-gray-700 max-w-3xl mx-auto mb-12;
+        }
+
+        /* --- Animations --- */
+        /* Reveal on Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Background Zoom Animation */
+        .hero-bg-zoom {
+            animation: zoom-in 20s ease-out forwards;
+        }
+
+        @keyframes zoom-in {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        /* Blueprint pattern for stats section */
+        .blueprint-bg {
+            background-image:
+                linear-gradient(rgba(26, 35, 126, 0.95), rgba(26, 35, 126, 0.95)),
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 100%, 2rem 2rem, 2rem 2rem;
+        }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
