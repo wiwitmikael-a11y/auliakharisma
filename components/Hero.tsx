@@ -19,10 +19,10 @@ const Hero: React.FC = () => {
             <div className="absolute inset-0 bg-charcoal opacity-60"></div>
             <div className="relative z-10 p-4">
                 <h1 className="text-4xl md:text-6xl font-extrabold font-slab leading-tight mb-4 drop-shadow-lg">
-                    Membangun Masa Depan, <br /> Satu Proyek Sekaligus.
+                    Mewujudkan Visi Konstruksi Anda <br /> dengan Kualitas Terbaik.
                 </h1>
                 <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-100 drop-shadow-md">
-                    CV. Aulia Kharisma adalah mitra terpercaya Anda dalam layanan konstruksi umum, dari perencanaan hingga penyelesaian.
+                    Spesialis konstruksi gedung, jalan, dan infrastruktur sipil untuk kebutuhan B2B dan pemerintah.
                 </p>
                 <a 
                     href="#proyek" 
