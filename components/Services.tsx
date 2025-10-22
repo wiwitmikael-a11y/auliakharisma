@@ -1,5 +1,5 @@
 import React from 'react';
-import { BuildingIcon, BridgeIcon, BlueprintIcon, ClipboardCheckIcon } from './icons';
+import { BuildingIcon, BridgeIcon, BlueprintIcon, ClipboardListIcon } from './icons';
 import { useRevealAnimation } from './hooks';
 
 const services = [
@@ -19,7 +19,7 @@ const services = [
         description: 'Menyediakan layanan perencanaan detail, desain teknis, dan Rencana Anggaran Biaya (RAB) yang akurat.'
     },
     {
-        icon: <ClipboardCheckIcon className="h-12 w-12 text-safety-orange mb-4" />,
+        icon: <ClipboardListIcon className="h-12 w-12 text-safety-orange mb-4" />,
         title: 'Manajemen Konstruksi',
         description: 'Pengawasan dan manajemen proyek secara profesional untuk memastikan efisiensi, kualitas, dan ketepatan waktu.'
     }
@@ -32,8 +32,14 @@ const Services: React.FC = () => {
         <section id="layanan" className="py-20 blueprint-pattern-gray">
             <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
-                    <h2 className="section-title">Layanan Inti Kami</h2>
-                    <p className="section-subtitle">
+                    <h2 
+                        className="text-3xl md:text-4xl font-slab font-bold text-charcoal text-center mb-4"
+                    >
+                        Layanan Inti Kami
+                    </h2>
+                    <p 
+                        className="text-center text-lg text-charcoal max-w-3xl mx-auto mb-12"
+                    >
                         Kami menyediakan solusi konstruksi yang komprehensif untuk memenuhi berbagai kebutuhan proyek Anda.
                     </p>
                 </div>

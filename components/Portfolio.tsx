@@ -68,7 +68,7 @@ const projectsData: Project[] = [
 
 const categories: ('Semua' | Project['category'])[] = ['Semua', 'Jalan Raya', 'Gedung', 'Jembatan', 'Renovasi'];
 
-const Portfolio: React.FC = () => {
+export const Portfolio: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<'Semua' | Project['category']>('Semua');
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const { ref, isVisible } = useRevealAnimation();
@@ -96,8 +96,14 @@ const Portfolio: React.FC = () => {
             <section id="proyek" className="py-20 blueprint-pattern-light">
                 <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
-                        <h2 className="section-title">Portofolio Proyek</h2>
-                        <p className="section-subtitle">
+                        <h2 
+                            className="text-3xl md:text-4xl font-slab font-bold text-charcoal text-center mb-4"
+                        >
+                            Portofolio Proyek
+                        </h2>
+                        <p 
+                            className="text-center text-lg text-charcoal max-w-3xl mx-auto mb-12"
+                        >
                             Berikut adalah beberapa proyek unggulan yang telah kami selesaikan dengan sukses.
                         </p>
                     </div>
@@ -180,5 +186,3 @@ const Portfolio: React.FC = () => {
         </>
     );
 };
-
-export default Portfolio;

@@ -15,8 +15,14 @@ const Certifications: React.FC = () => {
         <section id="legalitas" className="py-20 blueprint-pattern-gray">
              <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
-                    <h2 className="section-title">Kualitas & Legalitas</h2>
-                    <p className="section-subtitle">
+                    <h2 
+                        className="text-3xl md:text-4xl font-slab font-bold text-charcoal text-center mb-4"
+                    >
+                        Kualitas & Legalitas
+                    </h2>
+                    <p 
+                        className="text-center text-lg text-charcoal max-w-3xl mx-auto mb-12"
+                    >
                         Kami berkomitmen pada standar kualitas internasional dan kepatuhan regulasi untuk menjamin keberhasilan setiap proyek.
                     </p>
                 </div>
