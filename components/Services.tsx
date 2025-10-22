@@ -1,5 +1,5 @@
 import React from 'react';
-import { BuildingIcon, BridgeIcon, BlueprintIcon, ClipboardListIcon } from './icons';
+import { BuildingIcon, BridgeIcon, CalculatorIcon, ClipboardListIcon } from './icons';
 import { useRevealAnimation } from './hooks';
 
 const services = [
@@ -14,7 +14,7 @@ const services = [
         description: 'Pengerjaan infrastruktur jalan raya, jembatan, dan pekerjaan sipil lainnya untuk konektivitas yang lebih baik.'
     },
     {
-        icon: <BlueprintIcon className="h-12 w-12 text-safety-orange mb-4" />,
+        icon: <CalculatorIcon className="h-12 w-12 text-safety-orange mb-4" />,
         title: 'Jasa Perencanaan & Estimasi',
         description: 'Menyediakan layanan perencanaan detail, desain teknis, dan Rencana Anggaran Biaya (RAB) yang akurat.'
     },

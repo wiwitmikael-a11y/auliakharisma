@@ -11,21 +11,20 @@ export const BuildingIcon: React.FC<IconProps> = ({ className }) => (
     </svg>
 );
 
-
 export const BridgeIcon: React.FC<IconProps> = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8.25V18a2.25 2.25 0 002.25 2.25h13.5A2.25 2.25 0 0021 18V8.25" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 10.5h18M7.5 10.5V20.25m3-9.75V20.25m3-9.75V20.25m3-9.75V20.25" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M2 5.25a.75.75 0 01.75-.75h18.5a.75.75 0 010 1.5H2.75A.75.75 0 012 5.25z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25c0-1.518 1.232-2.75 2.75-2.75h11a2.75 2.75 0 012.75 2.75" />
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 0a2.25 2.25 0 012.25-2.25h12A2.25 2.25 0 0120.25 9M3.75 9v4.5A2.25 2.25 0 006 15.75h12A2.25 2.25 0 0020.25 13.5V9" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 15.75V21m12-5.25V21" />
     </svg>
 );
 
-export const BlueprintIcon: React.FC<IconProps> = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+export const CalculatorIcon: React.FC<IconProps> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 3h.008v.008H8.25v-.008zm0 3h.008v.008H8.25v-.008zm3-6h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm3-6h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zM4.5 3.75a.75.75 0 01.75-.75h13.5a.75.75 0 01.75.75v16.5a.75.75 0 01-.75-.75H5.25a.75.75 0 01-.75-.75V3.75z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h7.5" />
     </svg>
 );
+
 
 export const ClipboardListIcon: React.FC<IconProps> = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -42,7 +41,7 @@ export const SealCheckIcon: React.FC<IconProps> = ({ className }) => (
 
 export const HandshakeIcon: React.FC<IconProps> = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12.75 15l3-3.038A7.5 7.5 0 005.41 6.088L3 9.75m9.75 5.25l-3 3.038A7.5 7.5 0 0121.59 14.912L19.25 11.25" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
     </svg>
 );
 
