@@ -93,7 +93,7 @@ export const Portfolio: React.FC = () => {
 
     return (
         <>
-            <section id="proyek" className="py-20 blueprint-pattern-light">
+            <section id="proyek" className="py-20 modern-grid-bg-light">
                 <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
                         <h2 
@@ -116,7 +116,7 @@ export const Portfolio: React.FC = () => {
                                 className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors ${
                                     activeCategory === category
                                         ? 'bg-safety-orange text-charcoal'
-                                        : 'bg-white text-charcoal hover:bg-deep-blue/10'
+                                        : 'bg-white/80 backdrop-blur-sm text-charcoal hover:bg-deep-blue/10'
                                 }`}
                             >
                                 {category}
@@ -129,7 +129,7 @@ export const Portfolio: React.FC = () => {
                             <div
                                 key={project.id}
                                 onClick={() => openModal(project)}
-                                className={`group overflow-hidden rounded-lg shadow-lg cursor-pointer reveal ${isVisible ? 'visible' : ''}`}
+                                className={`group overflow-hidden rounded-lg shadow-lg cursor-pointer reveal bg-white ${isVisible ? 'visible' : ''}`}
                                 style={{
                                     transitionDelay: `${200 + index * 100}ms`,
                                     opacity: isVisible ? 1 : 0,
@@ -154,7 +154,7 @@ export const Portfolio: React.FC = () => {
 
             {selectedProject && (
                 <div 
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75" 
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm" 
                     onClick={closeModal}
                     role="dialog"
                     aria-modal="true"

@@ -12,7 +12,7 @@ const Certifications: React.FC = () => {
     const { ref, isVisible } = useRevealAnimation();
     
     return (
-        <section id="legalitas" className="py-20 blueprint-pattern-gray">
+        <section id="legalitas" className="py-20 modern-grid-bg-gray">
              <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
                     <h2 
@@ -30,7 +30,7 @@ const Certifications: React.FC = () => {
                     {certifications.map((cert, index) => (
                         <div 
                             key={cert.name} 
-                            className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md transition-transform duration-300 hover:scale-105 reveal"
+                            className="flex flex-col items-center p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-md transition-transform duration-300 hover:scale-105 reveal"
                             style={{ 
                                 transitionDelay: `${index * 100}ms`, 
                                 opacity: isVisible ? 1 : 0, 

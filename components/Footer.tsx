@@ -58,8 +58,8 @@ const Footer: React.FC = () => {
                             </a>
                         </div>
                          <p className="text-gray-300 mt-4">
-                            Jl. Konstruksi Jaya No. 123<br/>
-                            Jakarta, Indonesia
+                            Jl. Kertabumi Gg. Harrumanis II No. 21<br/>
+                            Karawang, Jawa Barat, Indonesia
                         </p>
                     </div>
                 </div>

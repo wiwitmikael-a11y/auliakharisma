@@ -29,7 +29,7 @@ const Services: React.FC = () => {
     const { ref, isVisible } = useRevealAnimation();
 
     return (
-        <section id="layanan" className="py-20 blueprint-pattern-gray">
+        <section id="layanan" className="py-20 modern-grid-bg-gray">
             <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
                     <h2 
@@ -47,7 +47,7 @@ const Services: React.FC = () => {
                     {services.map((service, index) => (
                         <div 
                             key={index} 
-                            className="bg-white p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 reveal"
+                            className="bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 reveal"
                             style={{ 
                                 transitionDelay: `${index * 100}ms`, 
                                 opacity: isVisible ? 1 : 0, 

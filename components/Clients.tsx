@@ -22,7 +22,7 @@ const Clients: React.FC = () => {
     const { ref, isVisible } = useRevealAnimation();
 
     return (
-        <section id="klien" className="py-20 blueprint-pattern-light">
+        <section id="klien" className="py-20 modern-grid-bg-light">
             <div ref={ref as React.RefObject<HTMLDivElement>} className={`container mx-auto px-4 sm:px-6 lg:px-8 reveal ${isVisible ? 'visible' : ''}`}>
                 <div className="text-center">
                     <h2 

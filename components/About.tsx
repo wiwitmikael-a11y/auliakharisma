@@ -24,7 +24,7 @@ const About: React.FC = () => {
     ];
 
     return (
-        <section id="tentang-kami" className="py-20 blueprint-pattern-light">
+        <section id="tentang-kami" className="py-20 modern-grid-bg-light">
             <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
                     <h2 
@@ -43,7 +43,7 @@ const About: React.FC = () => {
                     {values.map((value, index) => (
                         <div 
                             key={index} 
-                            className={`p-8 bg-gray-50 rounded-lg shadow-sm reveal ${isVisible ? 'visible' : ''}`}
+                            className={`p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-sm reveal ${isVisible ? 'visible' : ''}`}
                             style={{ transitionDelay: `${200 + index * 150}ms` }}
                         >
                              <div className="flex justify-center mb-4">

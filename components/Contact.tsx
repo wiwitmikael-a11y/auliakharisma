@@ -1,81 +1,196 @@
 import React, { useState } from 'react';
 import { useRevealAnimation } from './hooks';
+import { SpinnerIcon, CheckCircleIcon } from './icons';
+
+type SubmissionState = 'idle' | 'submitting' | 'success';
+
+const initialFormData = {
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    projectType: '',
+    message: ''
+};
 
 const Contact: React.FC = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        projectType: '',
-        message: ''
-    });
-
+    const [formData, setFormData] = useState(initialFormData);
+    const [submissionState, setSubmissionState] = useState<SubmissionState>('idle');
+    const [errors, setErrors] = useState<Partial<Record<keyof typeof initialFormData, string>>>({});
     const { ref, isVisible } = useRevealAnimation();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const validateField = (name: keyof typeof initialFormData, value: string): string => {
+        switch (name) {
+            case 'name':
+                return value.trim() ? '' : 'Nama lengkap wajib diisi.';
+            case 'company':
+                return value.trim() ? '' : 'Perusahaan wajib diisi.';
+            case 'email':
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!value.trim()) return 'Email wajib diisi.';
+                if (!emailRegex.test(value)) return 'Format email tidak valid (contoh: nama@email.com).';
+                return '';
+            case 'phone':
+                if (!value.trim()) return 'Nomor telepon wajib diisi.';
+                if (!/^\d[\d\s-()]*$/.test(value)) return 'Nomor telepon hanya boleh berisi angka dan simbol valid.';
+                return '';
+            case 'projectType':
+                return value ? '' : 'Jenis proyek wajib dipilih.';
+            default:
+                return '';
+        }
     };
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target as { name: keyof typeof initialFormData; value: string };
+        setFormData({ ...formData, [name]: value });
+        if (errors[name]) {
+            setErrors({ ...errors, [name]: '' });
+        }
+    };
+    
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target as { name: keyof typeof initialFormData; value: string };
+        const errorMessage = validateField(name, value);
+        if (errorMessage) {
+            setErrors(prev => ({ ...prev, [name]: errorMessage }));
+        }
+    };
+
+    const validateForm = (): boolean => {
+        const newErrors: Partial<Record<keyof typeof initialFormData, string>> = {};
+        let isValid = true;
+        (Object.keys(initialFormData) as Array<keyof typeof initialFormData>).forEach(key => {
+            const errorMessage = validateField(key, formData[key]);
+            if (errorMessage) {
+                newErrors[key] = errorMessage;
+                isValid = false;
+            }
+        });
+        setErrors(newErrors);
+        return isValid;
+    };
+    
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        alert('Terima kasih! Permintaan penawaran Anda telah terkirim. Kami akan segera menghubungi Anda.');
-        // Here you would typically handle form submission, e.g., send to an API endpoint.
-        setFormData({ name: '', company: '', email: '', phone: '', projectType: '', message: '' });
+        if (!validateForm()) {
+            return;
+        }
+        
+        setSubmissionState('submitting');
+        // Simulate API call
+        setTimeout(() => {
+            setSubmissionState('success');
+        }, 2000);
     };
 
+    const handleResetForm = () => {
+        setFormData(initialFormData);
+        setErrors({});
+        setSubmissionState('idle');
+    };
+    
+    const getInputClass = (fieldName: keyof typeof initialFormData) => 
+        `w-full p-3 border rounded-md focus:ring-2 focus:ring-safety-orange focus:border-safety-orange transition bg-white text-charcoal placeholder:text-gray-500 ${
+            errors[fieldName] ? 'border-red-500' : 'border-gray-300'
+        }`;
+
+    const FormLabel: React.FC<{ htmlFor: string, children: React.ReactNode, required?: boolean }> = ({ htmlFor, children, required }) => (
+        <label htmlFor={htmlFor} className="block text-sm font-semibold text-charcoal mb-1">
+            {children} {required && <span className="text-red-500">*</span>}
+        </label>
+    );
+
     return (
-        <section id="hubungi-kami" className="py-20 blueprint-pattern-gray">
+        <section id="hubungi-kami" className="py-20 modern-grid-bg-gray">
             <div ref={ref as React.RefObject<HTMLDivElement>} className={`container mx-auto px-4 sm:px-6 lg:px-8 reveal ${isVisible ? 'visible' : ''}`}>
                 <div className="text-center">
-                    <h2 
-                        className="text-3xl md:text-4xl font-slab font-bold text-charcoal text-center mb-4"
-                    >
+                    <h2 className="text-3xl md:text-4xl font-slab font-bold text-charcoal text-center mb-4">
                         Hubungi Kami
                     </h2>
-                    <p 
-                        className="text-center text-lg text-charcoal max-w-3xl mx-auto mb-12"
-                    >
+                    <p className="text-center text-lg text-charcoal max-w-3xl mx-auto mb-12">
                         Siap memulai proyek Anda? Isi formulir di bawah untuk permintaan penawaran atau konsultasi.
                     </p>
                 </div>
                 <div className="flex flex-col lg:flex-row gap-12">
-                    <div className="lg:w-1/2 bg-white p-8 rounded-lg shadow-lg">
-                        <h3 className="text-2xl font-bold font-slab text-charcoal mb-6">Formulir Permintaan Penawaran</h3>
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <input type="text" name="name" placeholder="Nama Lengkap" value={formData.name} onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-safety-orange focus:border-safety-orange transition" required />
-                                <input type="text" name="company" placeholder="Perusahaan" value={formData.company} onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-safety-orange focus:border-safety-orange transition" required />
+                    <div className="lg:w-1/2 bg-gray-100 p-8 rounded-lg shadow-lg">
+                        
+                        {submissionState === 'success' ? (
+                            <div className="text-center py-10 flex flex-col items-center justify-center h-full">
+                                <CheckCircleIcon className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                                <h4 className="text-xl font-bold text-charcoal">Permintaan Terkirim!</h4>
+                                <p className="text-gray-700 mt-2 mb-6">Terima kasih telah menghubungi kami. Tim kami akan segera merespon pesan Anda.</p>
+                                <button onClick={handleResetForm} className="bg-safety-orange hover:opacity-90 text-charcoal font-bold py-2 px-6 rounded-lg transition-transform transform hover:scale-105">
+                                    Kirim Pesan Lagi
+                                </button>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <input type="email" name="email" placeholder="Email Bisnis" value={formData.email} onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-safety-orange focus:border-safety-orange transition" required />
-                                <input type="tel" name="phone" placeholder="Nomor Telepon" value={formData.phone} onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-safety-orange focus:border-safety-orange transition" required />
-                            </div>
-                            <select name="projectType" value={formData.projectType} onChange={handleChange} className={`w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-safety-orange focus:border-safety-orange transition ${formData.projectType ? 'text-charcoal' : 'text-gray-700'}`} required>
-                                <option value="" disabled>Pilih Jenis Kebutuhan Proyek</option>
-                                <option>Konstruksi Gedung</option>
-                                <option>Infrastruktur Jalan & Jembatan</option>
-                                <option>Renovasi & Perbaikan</option>
-                                <option>Lainnya</option>
-                            </select>
-                            <textarea name="message" placeholder="Pesan singkat mengenai proyek Anda..." value={formData.message} onChange={handleChange} rows={4} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-safety-orange focus:border-safety-orange transition"></textarea>
-                            <button type="submit" className="w-full bg-safety-orange hover:opacity-90 text-charcoal font-bold py-3 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                                Kirim Permintaan
-                            </button>
-                        </form>
+                        ) : (
+                            <form onSubmit={handleSubmit} noValidate className="space-y-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <FormLabel htmlFor="name" required>Nama Lengkap</FormLabel>
+                                        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} onBlur={handleBlur} className={getInputClass('name')} />
+                                        {errors.name && <p className="text-red-600 text-xs mt-1">{errors.name}</p>}
+                                    </div>
+                                    <div>
+                                        <FormLabel htmlFor="company" required>Perusahaan</FormLabel>
+                                        <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} onBlur={handleBlur} className={getInputClass('company')} />
+                                        {errors.company && <p className="text-red-600 text-xs mt-1">{errors.company}</p>}
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <FormLabel htmlFor="email" required>Email Bisnis</FormLabel>
+                                        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} onBlur={handleBlur} className={getInputClass('email')} />
+                                        {errors.email && <p className="text-red-600 text-xs mt-1">{errors.email}</p>}
+                                    </div>
+                                    <div>
+                                        <FormLabel htmlFor="phone" required>Nomor Telepon</FormLabel>
+                                        <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} onBlur={handleBlur} className={getInputClass('phone')} />
+                                        {errors.phone && <p className="text-red-600 text-xs mt-1">{errors.phone}</p>}
+                                    </div>
+                                </div>
+                                <div>
+                                    <FormLabel htmlFor="projectType" required>Jenis Kebutuhan Proyek</FormLabel>
+                                    <select id="projectType" name="projectType" value={formData.projectType} onChange={handleChange} onBlur={handleBlur} className={`${getInputClass('projectType')} ${formData.projectType === '' ? 'text-gray-500' : 'text-charcoal'}`} >
+                                        <option value="" disabled>Pilih Jenis Kebutuhan Proyek</option>
+                                        <option className="text-charcoal">Konstruksi Gedung</option>
+                                        <option className="text-charcoal">Infrastruktur Jalan & Jembatan</option>
+                                        <option className="text-charcoal">Renovasi & Perbaikan</option>
+                                        <option className="text-charcoal">Lainnya</option>
+                                    </select>
+                                    {errors.projectType && <p className="text-red-600 text-xs mt-1">{errors.projectType}</p>}
+                                </div>
+                                <div>
+                                    <FormLabel htmlFor="message">Pesan Singkat</FormLabel>
+                                    <textarea id="message" name="message" placeholder="Jelaskan secara singkat mengenai kebutuhan proyek Anda..." value={formData.message} onChange={handleChange} onBlur={handleBlur} rows={4} className={getInputClass('message')} />
+                                    {errors.message && <p className="text-red-600 text-xs mt-1">{errors.message}</p>}
+                                </div>
+                                <button type="submit" disabled={submissionState === 'submitting'} className="w-full bg-safety-orange hover:opacity-90 text-charcoal font-bold py-3 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 flex items-center justify-center disabled:opacity-75 disabled:cursor-not-allowed">
+                                    {submissionState === 'submitting' ? (
+                                        <>
+                                            <SpinnerIcon className="animate-spin -ml-1 mr-3 h-5 w-5" />
+                                            Mengirim...
+                                        </>
+                                    ) : (
+                                        'Kirim Permintaan'
+                                    )}
+                                </button>
+                            </form>
+                        )}
                     </div>
                     <div className="lg:w-1/2">
-                         <div className="bg-white p-8 rounded-lg shadow-lg mb-6">
+                         <div className="bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg mb-6">
                             <h3 className="text-2xl font-bold font-slab text-charcoal mb-4">Informasi Kontak</h3>
                             <div className="space-y-3 text-gray-700">
-                                <p><strong>Alamat:</strong> Jl. Konstruksi Jaya No. 123, Jakarta, Indonesia</p>
+                                <p><strong>Alamat:</strong> Jl. Kertabumi Gg. Harrumanis II No. 21, Karawang Kulon, Karawang Barat, Jawa Barat, Indonesia.</p>
                                 <p><strong>Email:</strong> <a href="mailto:info@auliakharisma.com" className="text-deep-blue hover:underline">info@auliakharisma.com</a></p>
-                                <p><strong>Telepon:</strong> <a href="tel:+62211234567" className="text-deep-blue hover:underline">(021) 123-4567</a></p>
+                                <p><strong>Telepon:</strong> <a href="tel:+622671234567" className="text-deep-blue hover:underline">(0267) 123-4567</a></p>
                             </div>
                         </div>
                         <div className="h-80 rounded-lg shadow-lg overflow-hidden">
                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.471616032159!2d106.8249646153303!3d-6.2009270955084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fd540de5!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1672382903028!5m2!1sid!2sid"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.733900984954!2d107.29749587499103!3d-6.298288893691533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6977e682247413%3A0x643c73752e04313b!2sCV.%20Aulia%20Kharisma!5e0!3m2!1sid!2sid!4v1716933633215!5m2!1sid!2sid"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}

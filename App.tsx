@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
-    <div className="bg-gray-50 font-sans">
+    <div className="bg-white font-sans">
       <Header />
       <main>
         <Hero />
