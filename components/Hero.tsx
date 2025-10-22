@@ -13,9 +13,12 @@ const Hero: React.FC = () => {
     return (
         <section 
             id="beranda" 
-            className="relative h-screen flex items-center justify-center text-center text-white bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1470&auto=format&fit=crop')" }}
+            className="relative h-screen flex items-center justify-center text-center text-white overflow-hidden"
         >
+            <div 
+                className="absolute inset-0 bg-cover bg-center hero-bg-zoom"
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1470&auto=format&fit=crop')" }}
+            />
             <div className="absolute inset-0 bg-charcoal opacity-60"></div>
             <div className="relative z-10 p-4">
                 <h1 className="text-4xl md:text-6xl font-extrabold font-slab leading-tight mb-4 drop-shadow-lg">

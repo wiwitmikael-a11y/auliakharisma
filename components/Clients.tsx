@@ -1,20 +1,28 @@
 import React from 'react';
 import { useRevealAnimation } from './hooks';
 
+// --- SVG Logos for better quality and professionalism ---
+const PuprLogo = () => <svg className="h-16 w-auto" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="50" y="30" fontFamily="Arial, sans-serif" fontSize="12" fill="#4A5568" textAnchor="middle" dominantBaseline="middle">Kementerian PUPR</text></svg>;
+const WaskitaLogo = () => <svg className="h-16 w-auto" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="50" y="30" fontFamily="Arial, sans-serif" fontSize="12" fill="#4A5568" textAnchor="middle" dominantBaseline="middle">Waskita Karya</text></svg>;
+const SummareconLogo = () => <svg className="h-16 w-auto" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="50" y="30" fontFamily="Arial, sans-serif" fontSize="12" fill="#4A5568" textAnchor="middle" dominantBaseline="middle">Summarecon</text></svg>;
+const ModernlandLogo = () => <svg className="h-16 w-auto" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="50" y="30" fontFamily="Arial, sans-serif" fontSize="12" fill="#4A5568" textAnchor="middle" dominantBaseline="middle">Modernland</text></svg>;
+const PemprovJabarLogo = () => <svg className="h-16 w-auto" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="50" y="30" fontFamily="Arial, sans-serif" fontSize="12" fill="#4A5568" textAnchor="middle" dominantBaseline="middle">Pemprov Jabar</text></svg>;
+const DinasPuLogo = () => <svg className="h-16 w-auto" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="50" y="30" fontFamily="Arial, sans-serif" fontSize="12" fill="#4A5568" textAnchor="middle" dominantBaseline="middle">Dinas PU</text></svg>;
+
 const clients = [
-    { name: 'Kementerian PUPR', logoUrl: 'https://placehold.co/150x60/F3F4F6/9CA3AF?text=Kementerian+PUPR' },
-    { name: 'Waskita Karya', logoUrl: 'https://placehold.co/150x60/F3F4F6/9CA3AF?text=Waskita+Karya' },
-    { name: 'Summarecon', logoUrl: 'https://placehold.co/150x60/F3F4F6/9CA3AF?text=Summarecon' },
-    { name: 'Modernland', logoUrl: 'https://placehold.co/150x60/F3F4F6/9CA3AF?text=Modernland' },
-    { name: 'Pemprov Jabar', logoUrl: 'https://placehold.co/150x60/F3F4F6/9CA3AF?text=Pemprov+Jabar' },
-    { name: 'Dinas PU', logoUrl: 'https://placehold.co/150x60/F3F4F6/9CA3AF?text=Dinas+PU' },
+    { name: 'Kementerian PUPR', logo: <PuprLogo /> },
+    { name: 'Waskita Karya', logo: <WaskitaLogo /> },
+    { name: 'Summarecon', logo: <SummareconLogo /> },
+    { name: 'Modernland', logo: <ModernlandLogo /> },
+    { name: 'Pemprov Jabar', logo: <PemprovJabarLogo /> },
+    { name: 'Dinas PU', logo: <DinasPuLogo /> },
 ];
 
 const Clients: React.FC = () => {
     const { ref, isVisible } = useRevealAnimation();
 
     return (
-        <section id="klien" className="py-20 bg-white">
+        <section id="klien" className="py-20 blueprint-pattern-light">
             <div ref={ref as React.RefObject<HTMLDivElement>} className={`container mx-auto px-4 sm:px-6 lg:px-8 reveal ${isVisible ? 'visible' : ''}`}>
                 <div className="text-center">
                     <h2 className="section-title">Klien & Rekanan</h2>
@@ -22,23 +30,19 @@ const Clients: React.FC = () => {
                         Dipercaya oleh berbagai institusi pemerintah dan perusahaan swasta terkemuka.
                     </p>
                 </div>
-                <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
-                    {clients.map((client, index) => (
-                        <a 
-                            href="#"
-                            onClick={(e) => e.preventDefault()}
-                            aria-label={`Logo ${client.name}`}
-                            key={client.name} 
-                            className="w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 reveal"
-                            style={{ 
-                                transitionDelay: `${index * 100}ms`, 
-                                opacity: isVisible ? 1 : 0, 
-                                transform: isVisible ? 'translateY(0)' : 'translateY(20px)' 
-                            }}
-                        >
-                             <img src={client.logoUrl} alt={client.name} className="h-12 object-contain" />
-                        </a>
-                    ))}
+                <div className="logo-scroller relative overflow-hidden">
+                    <div className="flex w-max animate-scroll gap-16">
+                        {/* Render logos twice for a seamless loop */}
+                        {[...clients, ...clients].map((client, index) => (
+                            <div 
+                                key={`${client.name}-${index}`} 
+                                className="flex-shrink-0 w-64 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
+                                aria-hidden={index >= clients.length}
+                            >
+                                 {client.logo}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

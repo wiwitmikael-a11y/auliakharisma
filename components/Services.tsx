@@ -29,7 +29,7 @@ const Services: React.FC = () => {
     const { ref, isVisible } = useRevealAnimation();
 
     return (
-        <section id="layanan" className="py-20 bg-gray-50">
+        <section id="layanan" className="py-20 blueprint-pattern-gray">
             <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
                     <h2 className="section-title">Layanan Inti Kami</h2>

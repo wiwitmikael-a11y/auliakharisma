@@ -25,7 +25,7 @@ const Contact: React.FC = () => {
     };
 
     return (
-        <section id="hubungi-kami" className="py-20 bg-gray-50">
+        <section id="hubungi-kami" className="py-20 blueprint-pattern-gray">
             <div ref={ref as React.RefObject<HTMLDivElement>} className={`container mx-auto px-4 sm:px-6 lg:px-8 reveal ${isVisible ? 'visible' : ''}`}>
                 <div className="text-center">
                     <h2 className="section-title">Hubungi Kami</h2>

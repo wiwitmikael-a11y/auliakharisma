@@ -44,10 +44,19 @@
                 '0%': { opacity: '0', transform: 'translateY(20px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
               },
+              scroll: {
+                'to': { transform: 'translateX(calc(-100% - 2.5rem))' },
+              },
+              animatedGrid: {
+                'from': { backgroundPosition: '0 0' },
+                'to': { backgroundPosition: '56px 56px' },
+              }
             },
             animation: {
               'fade-in-down': 'fadeInDown 0.8s ease-out forwards',
               'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'scroll': 'scroll 40s linear infinite',
+              'animated-grid': 'animatedGrid 60s linear infinite',
             }
           }
         }
@@ -63,7 +72,7 @@
             @apply text-3xl md:text-4xl font-slab font-bold text-charcoal text-center mb-4;
         }
         .section-subtitle {
-            @apply text-center text-lg text-gray-700 max-w-3xl mx-auto mb-12;
+            @apply text-center text-lg text-charcoal max-w-3xl mx-auto mb-12;
         }
 
         /* --- Animations --- */
@@ -95,6 +104,27 @@
                 linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 100%, 2rem 2rem, 2rem 2rem;
+        }
+
+        /* Animated Blueprint Pattern for light backgrounds */
+        .blueprint-pattern-light, .blueprint-pattern-gray {
+            background-image: 
+                linear-gradient(rgba(26, 35, 126, 0.04) 1px, transparent 1px), 
+                linear-gradient(to right, rgba(26, 35, 126, 0.04) 1px, transparent 1px);
+            background-size: 3.5rem 3.5rem; /* 56px */
+            animation: animated-grid 60s linear infinite;
+        }
+        .blueprint-pattern-light {
+            background-color: #ffffff;
+        }
+        .blueprint-pattern-gray {
+            background-color: #f9fafb; /* bg-gray-50 */
+        }
+        
+        /* Client Logo Scroller */
+        .logo-scroller {
+            -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+            mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
         }
     </style>
   <script type="importmap">

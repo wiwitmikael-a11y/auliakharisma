@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Project } from '../types';
 import { useRevealAnimation } from './hooks';
+import { ArrowUpRightIcon } from './icons';
 
 const projectsData: Project[] = [
     {
@@ -92,7 +93,7 @@ const Portfolio: React.FC = () => {
 
     return (
         <>
-            <section id="proyek" className="py-20 bg-white">
+            <section id="proyek" className="py-20 blueprint-pattern-light">
                 <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
                         <h2 className="section-title">Portofolio Proyek</h2>
@@ -131,7 +132,9 @@ const Portfolio: React.FC = () => {
                             >
                                 <div className="relative">
                                     <img src={project.imageUrl} alt={project.title} className="w-full h-60 object-cover transform group-hover:scale-110 transition-transform duration-300" />
-                                    <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-opacity"></div>
+                                    <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-opacity flex items-center justify-center">
+                                        <ArrowUpRightIcon className="h-10 w-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    </div>
                                     <div className="absolute bottom-0 left-0 p-4 text-white">
                                         <span className="text-sm bg-safety-orange text-charcoal px-2 py-1 rounded">{project.category}</span>
                                         <h3 className="text-lg font-bold font-slab mt-1">{project.title}</h3>

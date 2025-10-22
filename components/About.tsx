@@ -1,52 +1,66 @@
 import React from 'react';
 import { useRevealAnimation } from './hooks';
-import { HardHatIcon } from './icons';
+import { HardHatIcon, ClipboardCheckIcon } from './icons';
+
+// Ikon baru untuk Kualitas dan Integritas
+const QualityIcon: React.FC<{className?: string}> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+);
+
+const IntegrityIcon: React.FC<{className?: string}> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+    </svg>
+);
+
 
 const About: React.FC = () => {
     const { ref, isVisible } = useRevealAnimation();
 
     const values = [
-        { title: 'Kualitas', description: 'Menggunakan material terbaik dan pengerjaan presisi.' },
-        { title: 'Integritas', description: 'Transparansi dan kejujuran dalam setiap tahap proyek.' },
-        { title: 'Keamanan', description: 'Prioritas utama pada keselamatan dan kesehatan kerja (K3).' }
+        { 
+            icon: <QualityIcon className="h-10 w-10 text-safety-orange" />,
+            title: 'Kualitas Tanpa Kompromi', 
+            description: 'Kami berkomitmen menggunakan material terbaik dan menerapkan standar pengerjaan presisi untuk hasil yang tahan lama dan memuaskan.' 
+        },
+        { 
+            icon: <IntegrityIcon className="h-10 w-10 text-safety-orange" />,
+            title: 'Integritas & Transparansi', 
+            description: 'Membangun kepercayaan melalui komunikasi yang jujur dan transparansi penuh dalam setiap proses, mulai dari penawaran hingga serah terima.' 
+        },
+        { 
+            icon: <HardHatIcon className="h-10 w-10 text-safety-orange" />,
+            title: 'Keamanan sebagai Prioritas', 
+            description: 'Menerapkan standar K3 (Keselamatan dan Kesehatan Kerja) yang ketat untuk melindungi semua pihak yang terlibat dalam proyek.' 
+        }
     ];
 
     return (
-        <section id="tentang-kami" className="py-20 bg-white">
+        <section id="tentang-kami" className="py-20 blueprint-pattern-light">
             <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
-                    <h2 className="section-title">Tentang CV. Aulia Kharisma</h2>
-                    <p className="section-subtitle max-w-3xl mx-auto">
-                        Lebih dari 8 tahun, kami telah berdedikasi untuk menyediakan solusi konstruksi yang inovatif dan andal. Kami bangga menjadi bagian dari pembangunan infrastruktur dan properti yang berkualitas di Indonesia.
+                    <h2 className="section-title">Mitra Konstruksi Profesional Anda</h2>
+                    <p className="section-subtitle">
+                        Dengan lebih dari 8 tahun pengalaman, CV. Aulia Kharisma adalah mitra terpercaya dalam mewujudkan proyek konstruksi yang kompleks. Visi kami adalah menjadi kontraktor terdepan yang dikenal akan keandalan, inovasi, dan integritas. Kami berdedikasi untuk menyelesaikan setiap proyek dengan standar tertinggi, melebihi ekspektasi klien, dan berkontribusi positif bagi pembangunan Indonesia.
                     </p>
                 </div>
-                <div className="flex flex-col lg:flex-row items-center gap-12 mt-12">
-                    <div className={`lg:w-1/2 reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '200ms' }}>
-                        <img 
-                            src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop" 
-                            alt="Tim CV. Aulia Kharisma" 
-                            className="rounded-lg shadow-2xl object-cover w-full h-[400px]"
-                        />
-                    </div>
-                    <div className={`lg:w-1/2 reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '400ms' }}>
-                        <h3 className="text-2xl font-bold font-slab text-charcoal mb-4">Visi & Misi Kami</h3>
-                        <p className="text-gray-700 mb-6">
-                            Visi kami adalah menjadi perusahaan konstruksi terdepan yang dikenal akan kualitas, inovasi, dan integritas. Misi kami adalah menyelesaikan setiap proyek dengan standar tertinggi, melebihi ekspektasi klien, serta berkontribusi positif bagi masyarakat dan lingkungan.
-                        </p>
-                        <div className="space-y-4">
-                            {values.map((value, index) => (
-                                <div key={index} className="flex items-start">
-                                    <div className="flex-shrink-0">
-                                        <HardHatIcon className="h-6 w-6 text-safety-orange mt-1" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <h4 className="font-bold text-charcoal">{value.title}</h4>
-                                        <p className="text-gray-700">{value.description}</p>
-                                    </div>
-                                </div>
-                            ))}
+                
+                <div className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center`}>
+                    {values.map((value, index) => (
+                        <div 
+                            key={index} 
+                            className={`p-8 bg-gray-50 rounded-lg shadow-sm reveal ${isVisible ? 'visible' : ''}`}
+                            style={{ transitionDelay: `${200 + index * 150}ms` }}
+                        >
+                             <div className="flex justify-center mb-4">
+                                {value.icon}
+                            </div>
+                            <h3 className="text-xl font-bold font-slab text-charcoal mb-3">{value.title}</h3>
+                            <p className="text-gray-700">{value.description}</p>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </section>
