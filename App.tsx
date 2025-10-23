@@ -9,23 +9,28 @@ import Stats from './components/Stats';
 import Clients from './components/Clients';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { ThemeProvider, LanguageProvider } from './components/hooks';
 
 const App: React.FC = () => {
   return (
-    <div className="bg-white font-sans">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Portfolio />
-        <Certifications />
-        <Stats />
-        <Clients />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <LanguageProvider>
+        <div className="bg-white dark:bg-gray-900 font-sans transition-colors duration-300">
+          <Header />
+          <main>
+            <Hero />
+            <About />
+            <Services />
+            <Portfolio />
+            <Certifications />
+            <Stats />
+            <Clients />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 };
 

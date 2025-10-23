@@ -2,7 +2,7 @@
 export interface Project {
   id: number;
   title: string;
-  category: 'Jalan Raya' | 'Gedung' | 'Jembatan' | 'Renovasi';
+  category: string;
   imageUrl: string;
   client: string;
   location: string;

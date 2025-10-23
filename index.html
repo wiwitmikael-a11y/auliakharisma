@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV. Aulia Kharisma - Kontraktor Jasa Konstruksi</title>
-    <meta name="description" content="Website profesional untuk CV. Aulia Kharisma, sebuah badan usaha yang bergerak di bidang Kontraktor Jasa Konstruksi, menampilkan portofolio proyek, layanan, dan informasi legalitas untuk klien B2B.">
+    <meta name="description" content="Situs web profesional untuk CV. Aulia Kharisma, badan usaha di bidang Kontraktor Jasa Pelaksana Konstruksi, menampilkan portofolio proyek, layanan, dan informasi legalitas untuk klien B2B dan pemerintah.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,6 +12,7 @@
     <!-- Tailwind Config -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -68,6 +69,12 @@
                 linear-gradient(90deg, rgba(255, 111, 0, 0.1) 1px, transparent 1px);
             background-size: 2rem 2rem;
         }
+        .dark .blueprint-bg {
+             background-color: #1f2937; /* bg-gray-800 */
+             background-image:
+                linear-gradient(rgba(255, 111, 0, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 111, 0, 0.15) 1px, transparent 1px);
+        }
         
         .reveal {
             opacity: 0;
@@ -90,6 +97,18 @@
         }
         .modern-grid-bg-gray {
              background-color: #f9fafb; /* bg-gray-50 */
+        }
+        .dark .modern-grid-bg-light, .dark .modern-grid-bg-gray {
+            background-image: radial-gradient(circle at 1px 1px, rgba(255, 111, 0, 0.1) 1px, transparent 0);
+        }
+        .dark .modern-grid-bg-light {
+            background-color: #111827; /* bg-gray-900 */
+        }
+        .dark .modern-grid-bg-gray {
+            background-color: #1f2937; /* bg-gray-800 */
+        }
+        .dark #contact iframe {
+            filter: invert(90%) hue-rotate(180deg);
         }
     </style>
     

@@ -1,41 +1,42 @@
 import React from 'react';
-import { useRevealAnimation } from './hooks';
+import { useRevealAnimation, useLanguage } from './hooks';
 import { SealCheckIcon, HandshakeIcon, ShieldCheckIcon } from './icons';
 
 const About: React.FC = () => {
     const { ref, isVisible } = useRevealAnimation();
-
+    const { content } = useLanguage();
+    
     const values = [
         { 
             icon: <SealCheckIcon className="h-10 w-10 text-safety-orange" />,
-            title: 'Kualitas Tanpa Kompromi', 
-            description: 'Kami berkomitmen menggunakan material terbaik dan menerapkan standar pengerjaan presisi untuk hasil yang tahan lama dan memuaskan.' 
+            title: content.value1Title, 
+            description: content.value1Desc
         },
         { 
             icon: <HandshakeIcon className="h-10 w-10 text-safety-orange" />,
-            title: 'Integritas & Transparansi', 
-            description: 'Membangun kepercayaan melalui komunikasi yang jujur dan transparansi penuh dalam setiap proses, mulai dari penawaran hingga serah terima.' 
+            title: content.value2Title, 
+            description: content.value2Desc
         },
         { 
             icon: <ShieldCheckIcon className="h-10 w-10 text-safety-orange" />,
-            title: 'Keamanan sebagai Prioritas', 
-            description: 'Menerapkan standar K3 (Keselamatan dan Kesehatan Kerja) yang ketat untuk melindungi semua pihak yang terlibat dalam proyek.' 
+            title: content.value3Title, 
+            description: content.value3Desc
         }
     ];
 
     return (
-        <section id="tentang-kami" className="py-20 modern-grid-bg-light">
+        <section id="about-us" className="py-20 modern-grid-bg-light">
             <div ref={ref as React.RefObject<HTMLDivElement>} className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`text-center reveal ${isVisible ? 'visible' : ''}`}>
                     <h2 
-                        className="text-3xl md:text-4xl font-slab font-bold text-charcoal text-center mb-4"
+                        className="text-3xl md:text-4xl font-slab font-bold text-charcoal dark:text-white text-center mb-4"
                     >
-                        Mitra Konstruksi Profesional Anda
+                        {content.aboutTitle}
                     </h2>
                     <p 
-                        className="text-center text-lg text-charcoal max-w-3xl mx-auto mb-12"
+                        className="text-center text-lg text-charcoal dark:text-gray-300 max-w-3xl mx-auto mb-12"
                     >
-                        Dengan lebih dari 8 tahun pengalaman, CV. Aulia Kharisma adalah mitra terpercaya dalam mewujudkan proyek konstruksi yang kompleks. Visi kami adalah menjadi kontraktor terdepan yang dikenal akan keandalan, inovasi, dan integritas. Kami berdedikasi untuk menyelesaikan setiap proyek dengan standar tertinggi, melebihi ekspektasi klien, dan berkontribusi positif bagi pembangunan Indonesia.
+                        {content.aboutParagraph}
                     </p>
                 </div>
                 
@@ -43,14 +44,14 @@ const About: React.FC = () => {
                     {values.map((value, index) => (
                         <div 
                             key={index} 
-                            className={`p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-sm reveal ${isVisible ? 'visible' : ''}`}
+                            className={`p-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg shadow-sm reveal ${isVisible ? 'visible' : ''}`}
                             style={{ transitionDelay: `${200 + index * 150}ms` }}
                         >
                              <div className="flex justify-center mb-4">
                                 {value.icon}
                             </div>
-                            <h3 className="text-xl font-bold font-slab text-charcoal mb-3">{value.title}</h3>
-                            <p className="text-gray-700">{value.description}</p>
+                            <h3 className="text-xl font-bold font-slab text-charcoal dark:text-white mb-3">{value.title}</h3>
+                            <p className="text-gray-700 dark:text-gray-300">{value.description}</p>
                         </div>
                     ))}
                 </div>

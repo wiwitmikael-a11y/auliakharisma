@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useRevealAnimation } from './hooks';
+import { useRevealAnimation, useLanguage } from './hooks';
 
 const CountUp: React.FC<{ end: number; isInView: boolean; duration?: number; suffix?: string; prefix?: string }> = ({ end, isInView, duration = 2000, suffix = '', prefix = '' }) => {
     const [count, setCount] = useState(0);
@@ -30,15 +30,16 @@ const CountUp: React.FC<{ end: number; isInView: boolean; duration?: number; suf
     return <span>{prefix}{count}{suffix}</span>;
 };
 
-const stats = [
-    { value: 15, label: 'Proyek Selesai', suffix: '+' },
-    { value: 8, label: 'Tahun Pengalaman', suffix: '+' },
-    { value: 100, label: 'Kepatuhan K3', suffix: '%' },
-    { value: 98, label: 'Kepuasan Klien', suffix: '%' }
-];
-
 const Stats: React.FC = () => {
     const { ref, isVisible } = useRevealAnimation();
+    const { content } = useLanguage();
+
+    const stats = [
+        { value: 15, label: content.stat1Label, suffix: '+' },
+        { value: 8, label: content.stat2Label, suffix: '+' },
+        { value: 100, label: content.stat3Label, suffix: '%' },
+        { value: 98, label: content.stat4Label, suffix: '%' }
+    ];
 
     return (
         <section ref={ref as React.RefObject<HTMLElement>} className="py-20 bg-deep-blue text-white blueprint-bg">
